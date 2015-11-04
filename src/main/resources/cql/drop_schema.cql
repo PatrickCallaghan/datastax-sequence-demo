@@ -1,7 +1,2 @@
-use datastax_queueing_demo; 
-
-truncate queue;
-truncate queue_counters;
-
-drop keyspace datastax_queueing_demo;
+drop keyspace datastax_sequence_demo;
 	

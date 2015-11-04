@@ -1,13 +1,10 @@
-create keyspace if not exists datastax_queueing_demo WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '1' };
+create keyspace if not exists datastax_sequence_demo WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '1' };
 
-use datastax_queueing_demo; 
- 
-create table if not exists queue (location int, job uuid, task text, PRIMARY KEY (location)) WITH compaction= { 'class': 'MemoryOnlyStrategy', 'size_limit_in_mb': 200 } AND caching = 'NONE';
-	
-create table if not exists queue_counters (dummy text, reader int, writer int, PRIMARY KEY (dummy))WITH compaction= { 'class': 'MemoryOnlyStrategy', 'size_limit_in_mb': 25 } AND caching ='NONE';
-	
-insert into queue_counters (dummy, reader, writer) values ('Counters', 0, 0);
+use datastax_sequence_demo;
 
-truncate queue;
-truncate queue_counters;
+create table  if not exists sequence(
+    id text PRIMARY KEY,
+    sequence int
+);
 
+insert into sequence (id, sequence) values ('sequence', 0);

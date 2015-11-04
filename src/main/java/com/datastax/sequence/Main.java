@@ -13,7 +13,7 @@ import com.datastax.sequence.dao.SequenceService;
 
 public class Main {
 	private static Logger logger = LoggerFactory.getLogger( Main.class );
-	private static int NO_OF_SEQUENCES = 10000;
+	private static int NO_OF_SEQUENCES = 1000;
 	private int noOfThreads;
 
 	public Main() {
@@ -31,8 +31,9 @@ public class Main {
 		}
 		
 		try {
-			executor.awaitTermination(1, TimeUnit.DAYS);
+			executor.awaitTermination(1000, TimeUnit.SECONDS);
 		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		timer.end();
@@ -53,7 +54,7 @@ public class Main {
 			for  (int i = 0; i < NO_OF_SEQUENCES/noOfThreads; i ++) {
 				logger.info(service.getNextSequenceNo() + "");
 			}
-		}
+		}		
 	}
 
 	/**
