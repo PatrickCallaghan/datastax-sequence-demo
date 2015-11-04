@@ -31,6 +31,7 @@ public class Main {
 		}
 		
 		try {
+			executor.shutdownNow();
 			executor.awaitTermination(1000, TimeUnit.SECONDS);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
